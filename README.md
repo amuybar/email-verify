@@ -4,15 +4,14 @@ A simple Node.js TypeScript application that verifies user emails through a veri
 
 ## Table of Contents
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Setup](#setup)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Database Schema](#database-schema)
-- [License](#license)
-- [Contributing](#contributing)
+- [Email Verification Service](#email-verification-service)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Technologies Used](#technologies-used)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [.env](#env)
+    - [Set up the database:](#set-up-the-database)
 
 ## Features
 
@@ -43,3 +42,28 @@ Make sure you have the following installed on your machine:
 - A Supabase account for managing your database
 
 
+### .env
+
+```
+ PORT=5000 
+SUPABASE_URL=https://your-supabase-url.supabase.co  
+SUPABASE_KEY=your-supabase-key  
+EMAIL_USER=your-email@gmail.com  
+EMAIL_CLIENT_ID=your-google-client-id  
+EMAIL_CLIENT_SECRET=your-google-client-secret  
+EMAIL_REFRESH_TOKEN=your-google-refresh-token  
+
+```
+
+### Set up the database:
+
+Go to your Supabase dashboard and create a table named verifications with the following structure:
+
+```
+CREATE TABLE verifications (  
+    id SERIAL PRIMARY KEY,  
+    email VARCHAR(255) NOT NULL,  
+    code VARCHAR(6) NOT NULL,  
+    created_at TIMESTAMP DEFAULT NOW()  
+);  
+```
